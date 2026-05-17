@@ -39,8 +39,13 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin || allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV !== 'production') {
+    // Allow same-origin, onrender subdomains, or local dev
+    if (
+      !origin || 
+      origin.includes('onrender.com') ||
+      allowedOrigins.indexOf(origin) !== -1 || 
+      process.env.NODE_ENV !== 'production'
+    ) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
