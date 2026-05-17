@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #003580; /* Booking.com blue */
+  --color-secondary: #febb02; /* Booking.com yellow/gold */
+  --color-background: #f5f5f5; /* Light gray background */
+  --color-surface: #ffffff; /* White surface */
+  --color-text-dark: #333333;
+  --color-text-muted: #666666;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-dark);
+  font-family: 'Inter', sans-serif;
+}
