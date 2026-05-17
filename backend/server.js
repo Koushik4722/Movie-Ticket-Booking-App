@@ -65,7 +65,7 @@ app.get('/api', (req, res) => {
 
 // Serve frontend built assets in production
 if (process.env.NODE_ENV === 'production') {
-  const frontendBuildPath = path.join(__dirname, '../frontend/dist');
+  const frontendBuildPath = path.join(__dirname, 'dist');
   app.use(express.static(frontendBuildPath));
 
   // Anything that is not an API call should serve index.html for client-side routing
