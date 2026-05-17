@@ -8,7 +8,7 @@
     "dev": "nodemon server.js",
     "seed": "node seed/seeder.js",
     "seed:destroy": "node seed/seeder.js -d",
-    "build": "npm install && npm install --prefix ../frontend && npm run build --prefix ../frontend"
+    "build": "npm install && npm install --include=dev --prefix ../frontend && npm run build --prefix ../frontend"
   },
   "keywords": [],
   "author": "",
