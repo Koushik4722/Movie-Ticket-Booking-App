@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import api from '../utils/api';
 import { AuthContext } from '../context/AuthContext';
+
 import { Ticket, Trash2, User, Mail, Calendar, MapPin } from 'lucide-react';
 
 const Profile = () => {
@@ -15,7 +16,7 @@ const Profile = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get('http://localhost:5001/api/bookings/mybookings', config);
+      const { data } = await api.get('/api/bookings/mybookings', config);
       setBookings(data);
       setLoading(false);
     } catch (error) {
@@ -39,7 +40,7 @@ const Profile = () => {
             Authorization: `Bearer ${user.token}`,
           },
         };
-        const { data } = await axios.delete(`http://localhost:5001/api/bookings/${bookingId}`, config);
+        const { data } = await api.delete(`/api/bookings/${bookingId}`, config);
         alert(`Booking cancelled successfully!\nRefund Amount: ₹${data.refundAmount.toFixed(2)}\nCancellation Charge (20%): ₹${data.cancellationCharge.toFixed(2)}`);
         fetchBookings();
       } catch (error) {

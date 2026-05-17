@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../utils/api';
 import { MapPin } from 'lucide-react';
 
 const TheaterSelection = () => {
@@ -14,8 +14,8 @@ const TheaterSelection = () => {
     const fetchData = async () => {
       try {
         const [showsRes, movieRes] = await Promise.all([
-          axios.get(`http://localhost:5001/api/shows?movieId=${movieId}`),
-          axios.get(`http://localhost:5001/api/movies/${movieId}`)
+          api.get(`/api/shows?movieId=${movieId}`),
+          api.get(`/api/movies/${movieId}`)
         ]);
         
         // Group shows by theater

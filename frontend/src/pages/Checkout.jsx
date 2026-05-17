@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../utils/api';
 import { AuthContext } from '../context/AuthContext';
 import { CheckCircle, ShieldCheck } from 'lucide-react';
 
@@ -30,7 +30,7 @@ const Checkout = () => {
         },
       };
 
-      await axios.post('http://localhost:5001/api/bookings', {
+      await api.post('/api/bookings', {
         movieId: show.movieId._id,
         theaterId: show.theaterId._id,
         showId: show._id,

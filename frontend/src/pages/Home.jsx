@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../utils/api';
 import { Link, useLocation } from 'react-router-dom';
 
 const Home = () => {
@@ -14,9 +14,9 @@ const Home = () => {
       try {
         setLoading(true);
         const url = keyword 
-          ? `http://localhost:5001/api/movies?keyword=${keyword}` 
-          : 'http://localhost:5001/api/movies';
-        const { data } = await axios.get(url);
+          ? `/api/movies?keyword=${keyword}` 
+          : '/api/movies';
+        const { data } = await api.get(url);
         setMovies(data);
         setLoading(false);
       } catch (error) {

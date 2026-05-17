@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '@clerk/clerk-react';
-import axios from 'axios';
+import { AuthContext } from '../context/AuthContext';
+import api from '../utils/api';
 
 const AdminDashboard = () => {
-  const { user } = useUser();
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    if (!user?.publicMetadata?.role === 'admin') {
+    if (!user || !user.isAdmin) {
       navigate('/');
       return;
     }
-    axios.get('http://localhost:5001/api/movies').then(({ data }) => setMovies(data));
+    api.get('/api/movies').then(({ data }) => setMovies(data));
   }, [user, navigate]);
 
   return (

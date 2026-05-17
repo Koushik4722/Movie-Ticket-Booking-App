@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../utils/api';
 import { Clock, Calendar, Globe } from 'lucide-react';
 
 const MovieDetails = () => {
@@ -12,7 +12,7 @@ const MovieDetails = () => {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5001/api/movies/${id}`);
+        const { data } = await api.get(`/api/movies/${id}`);
         setMovie(data);
         setLoading(false);
       } catch (error) {

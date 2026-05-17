@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { io } from 'socket.io-client';
+import api, { getSocket } from '../utils/api';
 
-const socket = io('http://localhost:5001');
+const socket = getSocket();
 
 const SeatSelection = () => {
   const { showId } = useParams();
@@ -20,7 +19,7 @@ const SeatSelection = () => {
   useEffect(() => {
     const fetchShow = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5001/api/shows/${showId}`);
+        const { data } = await api.get(`/api/shows/${showId}`);
         setShow(data);
         setLoading(false);
       } catch (error) {
